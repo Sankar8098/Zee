@@ -24,7 +24,7 @@ def generate_random_string(length):
     return ''.join(random.choice(characters) for _ in range(length))
 
 def generate_and_verify_code():
-    code_prefix = "Z5APCP23Y"
+    code_prefix = "Z5APCP25Y"
     random_suffix = generate_random_string(4)
     code = f"{code_prefix}{random_suffix}"
 
