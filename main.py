@@ -10,7 +10,7 @@ def generate_random_string(length):
 
 def generate_and_verify_code():
     """Generates a Zee5 coupon code and verifies it via API."""
-    code_prefix = "Z5APCP25Y"  # Adjust the prefix if needed
+    code_prefix = "Z5APCP25Y"  # Ensure this prefix is correct
     random_suffix = generate_random_string(4)
     code = f"{code_prefix}{random_suffix}"
 
@@ -24,6 +24,9 @@ def generate_and_verify_code():
 
     try:
         response = requests.get(url, headers=headers)
+        print(f"[ℹ] Response Status: {response.status_code}")
+        print(f"[ℹ] Response Content: {response.text}")  # Debug API response
+        
         response.raise_for_status()
         result = response.json()
         
@@ -44,10 +47,10 @@ def main():
         num_codes = int(input("Enter the number of codes to generate: "))
         for _ in range(num_codes):
             generate_and_verify_code()
-            time.sleep(1)  # Prevents rapid requests
+            time.sleep(2)  # Prevents rate limiting
     except ValueError:
         print("[!] Please enter a valid number.")
 
 if __name__ == "__main__":
     main()
-
+    
